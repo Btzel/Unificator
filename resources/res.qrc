@@ -1,19 +1,21 @@
 <RCC>
-  <qresource prefix="images">
-    <file>images/logo2.png</file>
-    <file>images/logo3.png</file>
-    <file>images/logo.png</file>
-  </qresource>
   <qresource prefix="icons">
+    <file>icons/add-image.svg</file>
+    <file>icons/arrow-24-48.png</file>
     <file>icons/arrow-55-64.gif</file>
     <file>icons/arrow-87-64.png</file>
-    <file>icons/icons8-plus.svg</file>
-    <file>icons/square-plus.svg</file>
-    <file>icons/add-image.svg</file>
-    <file>icons/minus-small.svg</file>
-    <file>icons/cross(1).svg</file>
+    <file>icons/arrow-88-48.gif</file>
     <file>icons/cross.svg</file>
+    <file>icons/cross(1).svg</file>
     <file>icons/expand.svg</file>
+    <file>icons/icons8-plus.svg</file>
     <file>icons/minus.svg</file>
+    <file>icons/minus-small.svg</file>
+    <file>icons/square-plus.svg</file>
+  </qresource>
+  <qresource prefix="images">
+    <file>images/logo.png</file>
+    <file>images/logo2.png</file>
+    <file>images/logo3.png</file>
   </qresource>
 </RCC>
