@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="icons">
+    <file>icons/icons8-magic-wand-64.png</file>
+    <file>icons/wand_14817169.png</file>
+    <file>icons/levels.png</file>
     <file>icons/add-image.svg</file>
     <file>icons/arrow-24-48.png</file>
     <file>icons/arrow-55-64.gif</file>
