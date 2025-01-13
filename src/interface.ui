@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1090</width>
-    <height>609</height>
+    <width>1056</width>
+    <height>662</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -357,15 +363,20 @@
               <number>0</number>
              </property>
              <item>
-              <widget class="QPushButton" name="add_image_push_button">
+              <widget class="QPushButton" name="create_canvas_button">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
                  <height>0</height>
                 </size>
                </property>
+               <property name="font">
+                <font>
+                 <pointsize>13</pointsize>
+                </font>
+               </property>
                <property name="text">
-                <string>Add Image</string>
+                <string>Create New Canvas</string>
                </property>
                <property name="icon">
                 <iconset resource="../resources/res.qrc">
@@ -868,7 +879,7 @@ QToolButton:checked{
                    <x>0</x>
                    <y>0</y>
                    <width>258</width>
-                   <height>443</height>
+                   <height>487</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -1191,8 +1202,8 @@ QToolButton:checked{
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>258</width>
-                   <height>514</height>
+                   <width>216</width>
+                   <height>267</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_25">
@@ -1566,7 +1577,7 @@ QToolButton:checked{
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="frame_19">
+              <widget class="QFrame" name="visualizer_parent_frame">
                <property name="minimumSize">
                 <size>
                  <width>400</width>
@@ -1582,6 +1593,18 @@ QToolButton:checked{
                <layout class="QHBoxLayout" name="horizontalLayout_15">
                 <item>
                  <widget class="QGraphicsView" name="visualizer">
+                  <property name="frameShape">
+                   <enum>QFrame::NoFrame</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Sunken</enum>
+                  </property>
+                  <property name="lineWidth">
+                   <number>5</number>
+                  </property>
+                  <property name="midLineWidth">
+                   <number>5</number>
+                  </property>
                   <property name="verticalScrollBarPolicy">
                    <enum>Qt::ScrollBarAlwaysOff</enum>
                   </property>
@@ -1664,24 +1687,76 @@ QToolButton:checked{
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_11">
                 <item>
-                 <widget class="QLabel" name="label_12">
-                  <property name="text">
-                   <string>TextLabel</string>
+                 <widget class="QFrame" name="frame_19">
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
                   </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_19">
+                   <item>
+                    <widget class="QPushButton" name="add_layer_push_button">
+                     <property name="text">
+                      <string>Add Layer</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_11">
-                  <property name="text">
-                   <string>TextLabel</string>
+                 <widget class="QFrame" name="layer_visualization_frame">
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
                   </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_10">
-                  <property name="text">
-                   <string>TextLabel</string>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
                   </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_20">
+                   <item>
+                    <widget class="QScrollArea" name="scrollArea">
+                     <property name="widgetResizable">
+                      <bool>true</bool>
+                     </property>
+                     <widget class="QWidget" name="scroll_layer_widget">
+                      <property name="geometry">
+                       <rect>
+                        <x>0</x>
+                        <y>0</y>
+                        <width>192</width>
+                        <height>447</height>
+                       </rect>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_12">
+                       <item alignment="Qt::AlignTop">
+                        <widget class="QFrame" name="frame_8">
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_21">
+                          <item>
+                           <widget class="QFrame" name="layer_holder_frame">
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <layout class="QVBoxLayout" name="verticalLayout_17"/>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
                </layout>
