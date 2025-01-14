@@ -90,15 +90,19 @@ class MainWindow(QtWidgets.QMainWindow):
         layout.addWidget(self.layer_manager)
 
     def _handle_add_layer(self):
-        """Handle adding a new layer."""
+        """Handle adding multiple layers at once."""
         file_dialog = QFileDialog(self)
-        file_dialog.setFileMode(QFileDialog.ExistingFile)
+        file_dialog.setFileMode(QFileDialog.ExistingFiles)  # Allow multiple file selection
         file_dialog.setNameFilter("Images (*.png *.jpg *.jpeg *.bmp *.gif)")
         
         if file_dialog.exec_():
-            file_path = file_dialog.selectedFiles()[0]
-            pixmap = ImageHandler.load_image(file_path)
-            if pixmap:
-                layer_name = f"Layer {len(self.layer_manager.layers) + 1}"
-                self.layer_manager.add_layer(layer_name, pixmap)
-                self.layer_manager._update_canvas()  # Force canvas update
+            file_paths = file_dialog.selectedFiles()
+            
+            # Process all selected files
+            for file_path in file_paths:
+                pixmap = ImageHandler.load_image(file_path)
+                if pixmap:
+                    self.layer_manager.add_layer(pixmap)
+            
+            # Update canvas once after all layers are added
+            self.layer_manager._update_canvas()

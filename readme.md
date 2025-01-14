@@ -1,5 +1,5 @@
 **updates**
--layers can be created by add layers button, available to interact such as deleting, closing visibility,
+-layer is complete, next step is to create interactive images in the scene..
 **current issues**
--layers can be moved, but there a slight issue while positioning.
+
 

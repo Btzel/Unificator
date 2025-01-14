@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1056</width>
-    <height>611</height>
+    <width>1124</width>
+    <height>623</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -334,65 +334,6 @@
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item alignment="Qt::AlignLeft">
-           <widget class="QFrame" name="frame_10">
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);
-</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_5">
-             <property name="spacing">
-              <number>0</number>
-             </property>
-             <property name="leftMargin">
-              <number>9</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>9</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QPushButton" name="create_canvas_button">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>13</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Create New Canvas</string>
-               </property>
-               <property name="icon">
-                <iconset resource="../resources/res.qrc">
-                 <normaloff>:/icons/icons/icons8-plus.svg</normaloff>:/icons/icons/icons8-plus.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>20</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
           <item alignment="Qt::AlignRight|Qt::AlignVCenter">
            <widget class="QFrame" name="frame_11">
             <property name="sizePolicy">
@@ -592,11 +533,19 @@ background-color: rgb(137, 5, 5);
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">QFrame * {
-
+       <string notr="true">QFrame {
+	
     margin: 0px;
     padding: 0px;
 }
+
+QToolButton{
+	border:none;
+    margin: 0px;
+    padding: 0px;
+}
+
+
 </string>
       </property>
       <property name="frameShape">
@@ -878,8 +827,8 @@ QToolButton:checked{
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>258</width>
-                   <height>445</height>
+                   <width>230</width>
+                   <height>451</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -1202,8 +1151,8 @@ QToolButton:checked{
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>205</width>
-                   <height>267</height>
+                   <width>218</width>
+                   <height>291</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_25">
@@ -1594,7 +1543,7 @@ QToolButton:checked{
                 <item>
                  <widget class="QGraphicsView" name="visualizer">
                   <property name="frameShape">
-                   <enum>QFrame::NoFrame</enum>
+                   <enum>QFrame::Panel</enum>
                   </property>
                   <property name="frameShadow">
                    <enum>QFrame::Sunken</enum>
@@ -1670,6 +1619,18 @@ QToolButton:checked{
           </item>
           <item>
            <widget class="QFrame" name="layer_frame">
+            <property name="minimumSize">
+             <size>
+              <width>350</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
@@ -1708,14 +1669,32 @@ QToolButton:checked{
                 <item>
                  <widget class="QFrame" name="layer_visualization_frame">
                   <property name="frameShape">
-                   <enum>QFrame::StyledPanel</enum>
+                   <enum>QFrame::Panel</enum>
                   </property>
                   <property name="frameShadow">
-                   <enum>QFrame::Raised</enum>
+                   <enum>QFrame::Sunken</enum>
+                  </property>
+                  <property name="lineWidth">
+                   <number>5</number>
+                  </property>
+                  <property name="midLineWidth">
+                   <number>5</number>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_20">
                    <item>
                     <widget class="QScrollArea" name="scrollArea">
+                     <property name="frameShape">
+                      <enum>QFrame::NoFrame</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Plain</enum>
+                     </property>
+                     <property name="lineWidth">
+                      <number>5</number>
+                     </property>
+                     <property name="midLineWidth">
+                      <number>5</number>
+                     </property>
                      <property name="widgetResizable">
                       <bool>true</bool>
                      </property>
@@ -1724,18 +1703,30 @@ QToolButton:checked{
                        <rect>
                         <x>0</x>
                         <y>0</y>
-                        <width>192</width>
-                        <height>405</height>
+                        <width>288</width>
+                        <height>411</height>
                        </rect>
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_12">
                        <item>
                         <widget class="QFrame" name="frame_8">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>0</height>
+                          </size>
+                         </property>
                          <property name="frameShape">
-                          <enum>QFrame::StyledPanel</enum>
+                          <enum>QFrame::NoFrame</enum>
                          </property>
                          <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
+                          <enum>QFrame::Sunken</enum>
+                         </property>
+                         <property name="lineWidth">
+                          <number>5</number>
+                         </property>
+                         <property name="midLineWidth">
+                          <number>5</number>
                          </property>
                          <layout class="QHBoxLayout" name="horizontalLayout_21">
                           <item>

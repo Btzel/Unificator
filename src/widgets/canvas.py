@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtGui import QPainter, QBrush, QColor, QPixmap
-from PyQt5.QtCore import QRectF, Qt, QPointF, QSizeF
+from PyQt5.QtCore import QRectF, Qt, QPointF, QSizeF, QTimer
 
 class Canvas(QtWidgets.QGraphicsView):
     """Custom canvas widget for image visualization."""
@@ -31,6 +31,7 @@ class Canvas(QtWidgets.QGraphicsView):
         self.is_panning = False
         self.image_items = []  # Store all image items
         self.canvas_size = QSizeF(800, 600)
+        self._center_requested = False  # Flag to track centering request
 
     def _create_scene(self):
         """Create and setup the graphics scene."""
@@ -51,12 +52,21 @@ class Canvas(QtWidgets.QGraphicsView):
         )
 
     def set_initial_zoom(self):
-        """Set the initial zoom level for a more zoomed-out view."""
+        """Set the initial zoom level and center the canvas."""
+        # Set initial zoom to 50%
         initial_zoom_factor = 0.5
         self.resetTransform()
         self.scale(initial_zoom_factor, initial_zoom_factor)
         self.current_scale = initial_zoom_factor
-        self.centerOn(0, 0)
+        
+        # Calculate the center point of the canvas
+        center_point = QPointF(0, 0)  # Since our canvas rect is centered around (0,0)
+        
+        # Center on this point
+        self.centerOn(center_point)
+        
+        # Ensure the canvas is visible and centered after Qt finishes layout
+        QTimer.singleShot(0, self._ensure_centered)
 
     def drawBackground(self, painter, rect):
         """Draw checkered pattern for the entire workspace."""
@@ -145,3 +155,21 @@ class Canvas(QtWidgets.QGraphicsView):
     def has_layers(self):
         """Check if canvas has any layers."""
         return len(self.image_items) > 0
+        
+    def _ensure_centered(self):
+        """Ensure the canvas is centered in the viewport."""
+        if not self._center_requested:
+            self._center_requested = True
+            self.fitInView(self.canvas_rect, Qt.KeepAspectRatio)
+            # Reset to our desired 50% zoom
+            self.resetTransform()
+            self.scale(0.5, 0.5)
+            self.current_scale = 0.5
+            # Center on the canvas rect
+            self.centerOn(0, 0)
+            
+    def resizeEvent(self, event):
+        """Handle resize events to maintain centering."""
+        super().resizeEvent(event)
+        if not self._center_requested:
+            self._ensure_centered()
