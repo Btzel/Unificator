@@ -4,6 +4,7 @@ import os
 import res_rc
 from widgets.canvas import Canvas
 from widgets.panel_manager import PanelManager
+from widgets.layer_manager import LayerManager
 from core.image_handler import ImageHandler
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -14,6 +15,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self._load_ui()
         self._setup_canvas()
         self._setup_panel_manager()
+        self._setup_layer_manager()
         self._connect_signals()
 
     def _load_ui(self):
@@ -40,7 +42,8 @@ class MainWindow(QtWidgets.QMainWindow):
             lambda: self._handle_tool_button(self.adjust_button, 0))
         self.effects_button.clicked.connect(
             lambda: self._handle_tool_button(self.effects_button, 1))
-        self.create_canvas_button.clicked.connect(self._handle_create_canvas)
+        # Connect add layer button only once
+        self.add_layer_button.clicked.connect(self._handle_add_layer)
         self.save_button.clicked.connect(self._handle_save_image)
 
     def _handle_tool_button(self, button, idx):
@@ -48,27 +51,11 @@ class MainWindow(QtWidgets.QMainWindow):
         self.stackedWidget_2.setCurrentIndex(idx)
         self.panel_manager.handle_panel_animation(idx, button)
 
-    def _handle_create_canvas(self):
-        """Handle creating new canvas with image."""
-        file_dialog = QFileDialog(self)
-        file_dialog.setFileMode(QFileDialog.ExistingFile)
-        file_dialog.setNameFilter("Images (*.png *.jpg *.jpeg *.bmp *.gif)")
-        file_dialog.setViewMode(QFileDialog.List)
-
-        if file_dialog.exec_():
-            file_path = file_dialog.selectedFiles()[0]
-            pixmap = ImageHandler.load_image(file_path)
-            if pixmap:
-                self.canvas.set_image(pixmap)
-            else:
-                QMessageBox.warning(self, "Load Error", 
-                                  "Failed to load the image. Please check the file format.")
-
     def _handle_save_image(self):
         """Handle saving the canvas image."""
-        if not self.canvas.image_item:
+        if not self.canvas.has_layers():
             QMessageBox.warning(self, "No Image", 
-                              "There is no image to save. Please load an image first.")
+                              "There are no layers to save. Please add an image first.")
             return
 
         file_dialog = QFileDialog(self)
@@ -95,3 +82,23 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             QMessageBox.warning(self, "Save Error", 
                               f"Failed to save the image in {file_extension.upper()} format.")
+            
+    def _setup_layer_manager(self):
+        """Setup the layer manager."""
+        self.layer_manager = LayerManager(self)
+        layout = self.layer_holder_frame.layout()
+        layout.addWidget(self.layer_manager)
+
+    def _handle_add_layer(self):
+        """Handle adding a new layer."""
+        file_dialog = QFileDialog(self)
+        file_dialog.setFileMode(QFileDialog.ExistingFile)
+        file_dialog.setNameFilter("Images (*.png *.jpg *.jpeg *.bmp *.gif)")
+        
+        if file_dialog.exec_():
+            file_path = file_dialog.selectedFiles()[0]
+            pixmap = ImageHandler.load_image(file_path)
+            if pixmap:
+                layer_name = f"Layer {len(self.layer_manager.layers) + 1}"
+                self.layer_manager.add_layer(layer_name, pixmap)
+                self.layer_manager._update_canvas()  # Force canvas update

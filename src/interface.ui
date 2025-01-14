@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1056</width>
-    <height>662</height>
+    <height>611</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -879,7 +879,7 @@ QToolButton:checked{
                    <x>0</x>
                    <y>0</y>
                    <width>258</width>
-                   <height>487</height>
+                   <height>445</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -1725,11 +1725,11 @@ QToolButton:checked{
                         <x>0</x>
                         <y>0</y>
                         <width>192</width>
-                        <height>447</height>
+                        <height>405</height>
                        </rect>
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_12">
-                       <item alignment="Qt::AlignTop">
+                       <item>
                         <widget class="QFrame" name="frame_8">
                          <property name="frameShape">
                           <enum>QFrame::StyledPanel</enum>
@@ -1746,22 +1746,7 @@ QToolButton:checked{
                             <property name="frameShadow">
                              <enum>QFrame::Raised</enum>
                             </property>
-                            <layout class="QVBoxLayout" name="verticalLayout_17">
-                             <item>
-                              <widget class="QPushButton" name="pushButton_9">
-                               <property name="text">
-                                <string>PushButton</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QToolButton" name="toolButton">
-                               <property name="text">
-                                <string>...</string>
-                               </property>
-                              </widget>
-                             </item>
-                            </layout>
+                            <layout class="QVBoxLayout" name="verticalLayout_17"/>
                            </widget>
                           </item>
                          </layout>

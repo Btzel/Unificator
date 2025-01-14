@@ -29,7 +29,7 @@ class Canvas(QtWidgets.QGraphicsView):
         self._drag_start_pos = None
         self.current_scale = 1.0
         self.is_panning = False
-        self.image_item = None
+        self.image_items = []  # Store all image items
         self.canvas_size = QSizeF(800, 600)
 
     def _create_scene(self):
@@ -120,27 +120,28 @@ class Canvas(QtWidgets.QGraphicsView):
 
         event.accept()
 
-    def set_image(self, pixmap):
-        """Set the single image on the canvas."""
-        if self.image_item:
-            self.scene.removeItem(self.image_item)
+    def clear_scene(self):
+        """Clear all items from the scene."""
+        if hasattr(self, 'scene'):
+            self.scene.clear()
+            self._setup_canvas_rect()
+            self.image_items.clear()
 
-        scaled_pixmap = pixmap.scaled(
-            self.canvas_size.toSize(),
-            Qt.KeepAspectRatio,
-            Qt.SmoothTransformation
-        )
+    def add_image_layer(self, pixmap):
+        """Add an image layer to the scene."""
+        if pixmap:
+            scaled_pixmap = pixmap.scaled(
+                self.canvas_size.toSize(),
+                Qt.KeepAspectRatio,
+                Qt.SmoothTransformation
+            )
+            
+            image_item = self.scene.addPixmap(scaled_pixmap)
+            x_offset = -scaled_pixmap.width() / 2
+            y_offset = -scaled_pixmap.height() / 2
+            image_item.setPos(x_offset, y_offset)
+            self.image_items.append(image_item)
 
-        self.image_item = self.scene.addPixmap(scaled_pixmap)
-        x_offset = -scaled_pixmap.width() / 2
-        y_offset = -scaled_pixmap.height() / 2
-        self.image_item.setPos(x_offset, y_offset)
-
-        self.resetTransform()
-        self.current_scale = 1.0
-        self.centerOn(0, 0)
-
-    def resizeEvent(self, event):
-        """Handle resize events."""
-        super().resizeEvent(event)
-        self.centerOn(0, 0)
+    def has_layers(self):
+        """Check if canvas has any layers."""
+        return len(self.image_items) > 0
