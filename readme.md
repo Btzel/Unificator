@@ -45,7 +45,6 @@ A modern, AI-driven image editing application built with PyQt5. This project aim
   - [ ] Smart retouching tools
 
 - [ ] **Advanced Editing Tools**
-  - [ ] Brush system with pressure sensitivity
   - [ ] Selection tools (rectangle, ellipse, lasso)
   - [ ] Filters and effects
   - [ ] Color adjustment tools
@@ -69,8 +68,8 @@ A modern, AI-driven image editing application built with PyQt5. This project aim
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/ai-image-editor.git
-cd ai-image-editor
+git clone https://github.com/Btzel/unificator-image-editor.git
+cd unificator-image-editor
 ```
 
 2. Create a virtual environment (recommended):
@@ -81,7 +80,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 3. Install dependencies:
 ```bash
-pip install PyQt5 opencv-python
+pip install PyQt5 opencv-python numpy
 ```
 
 4. Run the application:
@@ -92,7 +91,7 @@ python main.py
 ## 🏗️ Project Structure
 
 ```
-ai-image-editor/
+unificator-image-editor/
 ├── main.py              # Application entry point
 ├── main_window.py       # Main application window
 ├── widgets/
